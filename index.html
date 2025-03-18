@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תורים - מערכת ניהול תורים חכמה</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- נאב-בר -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-calendar-check-fill me-2"></i>תורים
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">יתרונות</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">מחירים</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">צור קשר</a>
+                    </li>
+                </ul>
+                <!-- אזור התחברות/הרשמה (למשתמשים לא מחוברים) -->
+                <div class="d-flex auth-buttons" id="auth-buttons">
+                    <button class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">התחברות</button>
+                    <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#registerModal">הרשמה</button>
+                </div>
+                <!-- אזור משתמש מחובר (יוצג רק למשתמשים מחוברים) -->
+                <div class="d-flex user-info d-none" id="user-info">
+                    <span class="navbar-text me-3">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <span id="username-display">שם משתמש</span>
+                    </span>
+                    <button class="btn btn-outline-light" id="logout-btn">התנתק</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- סקציית הירו -->
+    <section class="hero bg-primary text-white py-5 text-center">
+        <div class="container py-5">
+            <h1 class="display-4 fw-bold mb-3">ניהול תורים חכם לעסק שלך</h1>
+            <p class="lead mb-4">פתרון פשוט וחכם לניהול תורים שיחסוך לך זמן, כסף והתעסקות מיותרת</p>
+            <button class="btn btn-light btn-lg px-5 py-3" data-bs-toggle="modal" data-bs-target="#registerModal">
+                <i class="bi bi-calendar-plus me-2"></i>התחל עכשיו
+            </button>
+        </div>
+    </section>
+
+    <!-- סקציית היתרונות -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">היתרונות של מערכת 'תורים'</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-gear-fill text-primary display-4 mb-3"></i>
+                            <h3 class="card-title h5">ניהול קל ופשוט</h3>
+                            <p class="card-text">ממשק אינטואיטיבי וידידותי שמאפשר לנהל את התורים של העסק בקלות ובמהירות, ללא צורך בידע טכני מיוחד.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-phone-fill text-primary display-4 mb-3"></i>
+                            <h3 class="card-title h5">התראות SMS</h3>
+                            <p class="card-text">שליחת תזכורות אוטומטיות ללקוחות לפני התור שלהם והתראות על שינויים בלוח הזמנים.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="bi bi-bar-chart-fill text-primary display-4 mb-3"></i>
+                            <h3 class="card-title h5">דוחות וסטטיסטיקות</h3>
+                            <p class="card-text">קבלת דוחות מפורטים על פעילות התורים בעסק, כולל נתונים על ביטולים, שעות עמוסות ומגמות.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- סקציית מחירים -->
+    <section id="pricing" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">תכניות מחירים</h2>
+            <div class="row g-4">
+                <!-- תכנית בסיסית -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-header bg-white text-center border-0 pt-4">
+                            <h3 class="h4 mb-0">בסיסי</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="display-5 fw-bold text-primary mb-3">חינם</h4>
+                            <p class="mb-4">מתאים לעסקים קטנים שרק מתחילים</p>
+                            <ul class="list-unstyled mb-4 text-start">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>עד 50 תורים בחודש</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>ממשק ניהול בסיסי</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>תזכורות מייל</li>
+                                <li class="mb-2 text-muted"><i class="bi bi-x-circle-fill text-muted me-2"></i>תזכורות SMS</li>
+                                <li class="mb-2 text-muted"><i class="bi bi-x-circle-fill text-muted me-2"></i>דוחות וסטטיסטיקות</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 mt-auto basic-plan">הרשם עכשיו</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- תכנית מקצועית -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-lg border border-primary">
+                        <div class="card-header bg-white text-center border-0 pt-4">
+                            <h3 class="h4 mb-0">מקצועי</h3>
+                            <span class="badge bg-primary position-absolute top-0 start-50 translate-middle mt-2">הכי פופולרי</span>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="display-5 fw-bold text-primary mb-3">₪99<small class="fs-6">/חודש</small></h4>
+                            <p class="mb-4">מתאים לרוב העסקים</p>
+                            <ul class="list-unstyled mb-4 text-start">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>תורים ללא הגבלה</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>ממשק ניהול מתקדם</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>תזכורות מייל ו-SMS</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>דוחות וסטטיסטיקות</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>API לשילוב במערכות אחרות</li>
+                            </ul>
+                            <button class="btn btn-primary w-100 mt-auto pro-plan">שדרג עכשיו</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- תכנית עסקית -->
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-header bg-white text-center border-0 pt-4">
+                            <h3 class="h4 mb-0">עסקי</h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="display-5 fw-bold text-primary mb-3">בהתאמה אישית</h4>
+                            <p class="mb-4">מתאים לעסקים גדולים ורשתות</p>
+                            <ul class="list-unstyled mb-4 text-start">
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>תורים ללא הגבלה</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>כל היתרונות של התכנית המקצועית</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>התאמה אישית של מראה ותכונות</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>מנהל תמיכה אישי</li>
+                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>אינטגרציה למערכות קיימות</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 mt-auto business-plan">צור קשר</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- סקציית צור קשר -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2 class="text-center mb-4">צור קשר</h2>
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <form id="contact-form">
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">שם מלא</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">אימייל</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">הודעה</label>
+                                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">שלח הודעה</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- פוטר -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">© 2024 תורים - כל הזכויות שמורות</p>
+        </div>
+    </footer>
+
+    <!-- מודל התחברות -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">התחברות</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">אימייל</label>
+                            <input type="email" class="form-control" id="loginEmail" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">סיסמה</label>
+                            <input type="password" class="form-control" id="loginPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">התחבר</button>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="mb-0">אין לך חשבון עדיין? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">הרשם עכשיו</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל הרשמה -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">הרשמה</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="register-form">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">שם מלא</label>
+                            <input type="text" class="form-control" id="registerFullName" name="fullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">אימייל</label>
+                            <input type="email" class="form-control" id="registerEmail" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">סיסמה</label>
+                            <input type="password" class="form-control" id="registerPassword" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label d-block">סוג משתמש</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="userType" id="userTypeCustomer" value="customer" checked>
+                                <label class="form-check-label" for="userTypeCustomer">לקוח</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="userType" id="userTypeBusiness" value="business">
+                                <label class="form-check-label" for="userTypeBusiness">בעל עסק</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">הרשם</button>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <p class="mb-0">יש לך כבר חשבון? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">התחבר</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- אלמנט הודעות -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+        <div id="message-toast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toast-message">
+                    <!-- תוכן ההודעה יוכנס כאן דינמית -->
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- אלמנט טעינה -->
+    <div class="loading-overlay d-none" id="loading-overlay">
+        <div class="spinner-border text-primary loading-spinner" role="status">
+            <span class="visually-hidden">טוען...</span>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+</body>
+</html> 

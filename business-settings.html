@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הגדרות עסק | מערכת תורים</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- נבאר עליון -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-calendar-check me-2"></i>תורים
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="business-dashboard.html">
+                            <i class="bi bi-speedometer2 me-1"></i>דשבורד
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="business-settings.html">
+                            <i class="bi bi-gear-fill me-1"></i>הגדרות
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="service-management.html">
+                            <i class="bi bi-list-check me-1"></i>שירותים
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle me-1"></i><span id="username-display">שם המשתמש</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="business-settings.html"><i class="bi bi-gear me-2"></i>הגדרות</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="logout-btn"><i class="bi bi-box-arrow-right me-2"></i>התנתקות</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- כותרת הדף -->
+    <div class="container mt-4">
+        <div class="row mb-4 align-items-center">
+            <div class="col-md-8">
+                <h1 class="h3 mb-0">הגדרות העסק</h1>
+                <p class="text-muted">עדכון פרטי העסק וקביעת שעות פעילות</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="business-dashboard.html" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-right me-1"></i>חזרה לדשבורד
+                </a>
+            </div>
+        </div>
+
+        <!-- טופס עדכון פרטי עסק -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title mb-0">פרטי העסק הבסיסיים</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="business-profile-form">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="business-name" class="form-label">שם העסק <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="business-name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="business-type" class="form-label">סוג העסק <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="business-type" required>
+                                        <option value="">בחר סוג עסק...</option>
+                                        <option value="מספרה">מספרה</option>
+                                        <option value="קוסמטיקה">קוסמטיקה</option>
+                                        <option value="רפואה">רפואה</option>
+                                        <option value="ייעוץ">ייעוץ</option>
+                                        <option value="כושר">כושר</option>
+                                        <option value="אחר">אחר</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="business-description" class="form-label">תיאור העסק</label>
+                                <textarea class="form-control" id="business-description" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="business-address" class="form-label">כתובת <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="business-address" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="business-phone" class="form-label">טלפון <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="business-phone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="business-email" class="form-label">אימייל</label>
+                                    <input type="email" class="form-control" id="business-email">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">קוד העסק הייחודי</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light" id="business-code-display" readonly>
+                                    <button class="btn btn-outline-secondary" type="button" id="copy-code-btn">
+                                        <i class="bi bi-clipboard"></i> העתק
+                                    </button>
+                                </div>
+                                <div class="form-text">קוד זה יכול לשמש משתמשים אחרים לדרוש בעלות על העסק שלך.</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="cancellation-policy" class="form-label">מדיניות ביטולים</label>
+                                <textarea class="form-control" id="cancellation-policy" rows="2"></textarea>
+                                <div class="form-text">מדיניות זו תוצג ללקוחות בעת ביטול תורים.</div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" id="save-profile-btn">
+                                <i class="bi bi-save me-1"></i>שמור שינויים
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 py-3">
+                        <h5 class="card-title mb-0">שעות פעילות</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="working-hours-form">
+                            <div id="working-hours-container">
+                                <!-- כאן ייווצרו שדות השעות באופן דינמי -->
+                                <div class="day-row mb-3" data-day="0">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <h6 class="mb-0 me-auto">יום ראשון</h6>
+                                        <div class="form-check form-switch ms-2">
+                                            <input class="form-check-input day-status" type="checkbox" role="switch" id="day-status-0" checked>
+                                            <label class="form-check-label day-status-label" for="day-status-0">פתוח</label>
+                                        </div>
+                                    </div>
+                                    <div class="row day-hours">
+                                        <div class="col-6">
+                                            <label for="open-time-0" class="form-label small">שעת פתיחה</label>
+                                            <input type="time" class="form-control" id="open-time-0" value="09:00">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="close-time-0" class="form-label small">שעת סגירה</label>
+                                            <input type="time" class="form-control" id="close-time-0" value="18:00">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- טופס עבור כל יום בשבוע יחזור על עצמו -->
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary mt-3" id="save-hours-btn">
+                                <i class="bi bi-save me-1"></i>שמור שעות פעילות
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- אלמנט הודעות -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+        <div id="message-toast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toast-message">
+                    <!-- תוכן ההודעה יוכנס כאן דינמית -->
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/business-settings.js"></script>
+</body>
+</html> 

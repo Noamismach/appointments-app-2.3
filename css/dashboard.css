@@ -1,0 +1,145 @@
+/* עיצוב כללי לדפי דשבורד */
+body {
+    background-color: #f8f9fa;
+}
+
+/* חלק ראשי */
+.container-fluid {
+    max-width: 1600px;
+}
+
+/* כרטיסיות */
+.nav-tabs .nav-link {
+    color: #495057;
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+}
+
+/* כרטיסיות תוכן */
+.tab-content {
+    background-color: transparent;
+}
+
+/* לוח שנה */
+.fc-calendar-container {
+    height: 75vh;
+    direction: ltr;
+}
+
+.fc-direction-rtl {
+    direction: rtl;
+}
+
+.fc-event {
+    cursor: pointer;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+    border: none;
+}
+
+/* טבלת תורים */
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/* אוואטר עסק */
+.business-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9f2ff;
+    border-radius: 50%;
+}
+
+/* סטטיסטיקות */
+.display-6 {
+    font-size: 2rem;
+}
+
+/* תגיות סטטוס */
+.badge {
+    padding: 0.5em 1em;
+    font-weight: normal;
+}
+
+.badge-pending {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.badge-confirmed {
+    background-color: #198754;
+}
+
+.badge-completed {
+    background-color: #0dcaf0;
+}
+
+.badge-cancelled {
+    background-color: #dc3545;
+}
+
+/* כפתורי פעולה בטבלה */
+.btn-action {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-right: 4px;
+}
+
+/* סקרולבר מותאם */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* התאמות למסכים קטנים */
+@media (max-width: 992px) {
+    .fc-calendar-container {
+        height: 60vh;
+    }
+    
+    .display-6 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .business-info {
+        text-align: center;
+    }
+    
+    .table-responsive {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+} 

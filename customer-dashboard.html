@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התורים שלי - מערכת תורים</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- נאב-בר -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-calendar-check-fill me-2"></i>תורים
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="customer-dashboard.html">התורים שלי</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="customer-settings.html">הגדרות</a>
+                    </li>
+                </ul>
+                <!-- אזור משתמש מחובר -->
+                <div class="d-flex user-info">
+                    <span class="navbar-text me-3">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <span id="username-display">שם משתמש</span>
+                    </span>
+                    <button class="btn btn-outline-light" id="logout-btn">התנתק</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- תוכן הדשבורד -->
+    <div class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h1 class="h3 mb-0">התורים שלי</h1>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+                    <i class="bi bi-plus-circle me-1"></i>קביעת תור חדש
+                </button>
+            </div>
+        </div>
+
+        <!-- כרטיסיית תורים קרובים -->
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-0 py-3">
+                <h5 class="card-title mb-0">תורים קרובים</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="upcoming-appointments" id="upcoming-appointments">
+                    <!-- כאן יוכנסו התורים הקרובים דינמית -->
+                    <!-- דוגמת מבנה לתור קרוב: -->
+                    <div class="appointment-item p-3 border-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <div class="appointment-date mb-2 mb-md-0">
+                                    <div class="date-badge p-2 text-center rounded bg-light">
+                                        <div class="day fw-bold">15</div>
+                                        <div class="month small">מרץ</div>
+                                        <div class="year small text-muted">2024</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-1">שם העסק</h6>
+                                <p class="mb-1"><i class="bi bi-clock me-1 text-primary"></i> 15:30</p>
+                                <p class="mb-0 small"><i class="bi bi-tag me-1 text-primary"></i> שם השירות</p>
+                            </div>
+                            <div class="col-md-3 text-md-end mt-2 mt-md-0">
+                                <div class="btn-group-vertical btn-group-sm w-100">
+                                    <button class="btn btn-outline-primary mb-1">פרטים</button>
+                                    <button class="btn btn-outline-danger">בטל תור</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- מסך ריק כשאין תורים קרובים -->
+                <div class="empty-state p-5 text-center d-none" id="empty-upcoming">
+                    <i class="bi bi-calendar-x display-4 text-muted mb-3"></i>
+                    <h6>אין לך תורים קרובים</h6>
+                    <p class="text-muted mb-0">לחץ על "קביעת תור חדש" כדי לקבוע את התור הראשון שלך</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- כרטיסיית דרישת בעלות על עסק -->
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-0 py-3">
+                <h5 class="card-title mb-0">דרישת בעלות על עסק</h5>
+            </div>
+            <div class="card-body">
+                <p>אם ברשותך קוד עסק בן 6 ספרות, באפשרותך לדרוש בעלות על העסק ולנהל אותו.</p>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#claimBusinessModal">
+                    <i class="bi bi-shop me-1"></i>דרוש בעלות על עסק
+                </button>
+            </div>
+        </div>
+
+        <!-- כרטיסיית היסטוריית תורים -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0 py-3">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="card-title mb-0">היסטוריית תורים</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-select" id="history-filter">
+                            <option value="all">כל התורים</option>
+                            <option value="completed">תורים שהסתיימו</option>
+                            <option value="cancelled">תורים שבוטלו</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>תאריך</th>
+                                <th>שעה</th>
+                                <th>עסק</th>
+                                <th>שירות</th>
+                                <th>סטטוס</th>
+                                <th>פעולות</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table">
+                            <!-- כאן יוכנסו התורים מההיסטוריה דינמית -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- מסך ריק כשאין היסטוריית תורים -->
+                <div class="empty-state p-5 text-center d-none" id="empty-history">
+                    <i class="bi bi-clock-history display-4 text-muted mb-3"></i>
+                    <h6>אין לך היסטוריית תורים</h6>
+                    <p class="text-muted mb-0">היסטוריית התורים שלך תופיע כאן לאחר שתקבע את התור הראשון שלך</p>
+                </div>
+                <!-- כפתורי עימוד -->
+                <nav aria-label="Page navigation" class="p-3 border-top">
+                    <ul class="pagination justify-content-center mb-0" id="history-pagination">
+                        <!-- כפתורי העימוד יוכנסו כאן דינמית -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל קביעת תור חדש -->
+    <div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newAppointmentModalLabel">קביעת תור חדש</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- שלבי הטופס -->
+                    <div class="booking-steps">
+                        <!-- שלב 1: בחירת עסק -->
+                        <div class="booking-step" id="step-1">
+                            <h6 class="fw-bold mb-3">בחר עסק</h6>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="search-business" placeholder="חפש לפי שם העסק או סוג">
+                                <button class="btn btn-outline-primary" type="button" id="search-business-btn">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                            <div class="business-list mt-3" id="business-list">
+                                <!-- רשימת העסקים תוכנס כאן דינמית -->
+                            </div>
+                        </div>
+                        
+                        <!-- שלב 2: בחירת שירות -->
+                        <div class="booking-step d-none" id="step-2">
+                            <h6 class="fw-bold mb-3">בחר שירות</h6>
+                            <div class="selected-business-info alert alert-light mb-3" id="selected-business-info">
+                                <!-- פרטי העסק שנבחר יוכנסו כאן דינמית -->
+                            </div>
+                            <div class="service-list mt-3" id="service-list">
+                                <!-- רשימת השירותים תוכנס כאן דינמית -->
+                            </div>
+                        </div>
+                        
+                        <!-- שלב 3: בחירת תאריך ושעה -->
+                        <div class="booking-step d-none" id="step-3">
+                            <h6 class="fw-bold mb-3">בחר תאריך ושעה</h6>
+                            <div class="selected-service-info alert alert-light mb-3" id="selected-service-info">
+                                <!-- פרטי השירות שנבחר יוכנסו כאן דינמית -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="appointment-date" class="form-label">תאריך</label>
+                                    <input type="date" class="form-control" id="appointment-date">
+                                </div>
+                            </div>
+                            <div id="available-slots" class="mt-3">
+                                <!-- החלונות הזמינים יוכנסו כאן דינמית -->
+                            </div>
+                        </div>
+                        
+                        <!-- שלב 4: פרטים נוספים ואישור -->
+                        <div class="booking-step d-none" id="step-4">
+                            <h6 class="fw-bold mb-3">אישור התור</h6>
+                            <div class="appointment-summary alert alert-light" id="appointment-summary">
+                                <!-- סיכום פרטי התור יוכנס כאן דינמית -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="appointment-notes" class="form-label">הערות</label>
+                                <textarea class="form-control" id="appointment-notes" rows="3" placeholder="הוסף הערות או בקשות מיוחדות לתור..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" id="prev-step" disabled>חזור</button>
+                    <button type="button" class="btn btn-primary" id="next-step">המשך</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל פרטי תור -->
+    <div class="modal fade" id="appointmentDetailsModal" tabindex="-1" aria-labelledby="appointmentDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appointmentDetailsModalLabel">פרטי תור</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="appointment-details">
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">שם העסק:</div>
+                            <div class="col-sm-8" id="details-business-name"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">שירות:</div>
+                            <div class="col-sm-8" id="details-service"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">תאריך:</div>
+                            <div class="col-sm-8" id="details-date"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">שעה:</div>
+                            <div class="col-sm-8" id="details-time"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">משך:</div>
+                            <div class="col-sm-8" id="details-duration"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">כתובת:</div>
+                            <div class="col-sm-8" id="details-address"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">טלפון העסק:</div>
+                            <div class="col-sm-8" id="details-phone"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">הערות:</div>
+                            <div class="col-sm-8" id="details-notes"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">סטטוס:</div>
+                            <div class="col-sm-8">
+                                <span class="badge" id="details-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="cancel-appointment">בטל תור</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">סגור</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל אישור ביטול תור -->
+    <div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmCancelModalLabel">אישור ביטול תור</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>האם אתה בטוח שברצונך לבטל את התור הזה?</p>
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <span id="cancellation-policy">לתשומת ליבך, ביטול תור פחות מ-24 שעות לפני מועד התור עלול לגרור חיוב.</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">חזור</button>
+                    <button type="button" class="btn btn-danger" id="confirm-cancel-btn">כן, בטל את התור</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל דרישת בעלות על עסק -->
+    <div class="modal fade" id="claimBusinessModal" tabindex="-1" aria-labelledby="claimBusinessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="claimBusinessModalLabel">דרישת בעלות על עסק</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>הזן את קוד העסק בן 6 הספרות כדי לקבוע את עצמך כבעל העסק:</p>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="business-code-input" placeholder="קוד עסק" maxlength="6" pattern="[0-9]{6}">
+                        <label for="business-code-input">קוד עסק (6 ספרות)</label>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        <span>אם אין לך קוד עסק, צור קשר עם שירות הלקוחות בטלפון 03-1234567</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ביטול</button>
+                    <button type="button" class="btn btn-primary" id="claim-business-btn">דרוש בעלות</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- אלמנט הודעות -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+        <div id="message-toast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toast-message">
+                    <!-- תוכן ההודעה יוכנס כאן דינמית -->
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/customer-dashboard.js"></script>
+</body>
+</html> 

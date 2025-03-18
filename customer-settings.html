@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הגדרות משתמש - מערכת תורים</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- נאב-בר -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-calendar-check-fill me-2"></i>תורים
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="customer-dashboard.html">התורים שלי</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="customer-settings.html">הגדרות</a>
+                    </li>
+                </ul>
+                <!-- אזור משתמש מחובר -->
+                <div class="d-flex user-info">
+                    <span class="navbar-text me-3">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <span id="username-display">שם משתמש</span>
+                    </span>
+                    <button class="btn btn-outline-light" id="logout-btn">התנתק</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- תוכן הדף -->
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- הגדרות החשבון -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="card-title mb-0">הפרטים שלי</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="user-profile-form">
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="user-fullname" class="form-label">שם מלא</label>
+                                    <input type="text" class="form-control" id="user-fullname" placeholder="הכנס שם מלא">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="user-email" class="form-label">כתובת אימייל</label>
+                                    <input type="email" class="form-control" id="user-email" placeholder="הכנס אימייל" readonly>
+                                    <div class="form-text text-secondary">לא ניתן לשנות את כתובת האימייל</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="user-phone" class="form-label">מספר טלפון</label>
+                                    <input type="tel" class="form-control" id="user-phone" placeholder="הכנס מספר טלפון">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="user-birth-date" class="form-label">תאריך לידה</label>
+                                    <input type="date" class="form-control" id="user-birth-date">
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-check-circle me-1"></i>שמור שינויים
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- שינוי סיסמה -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="card-title mb-0">שינוי סיסמה</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="change-password-form">
+                            <div class="mb-3">
+                                <label for="current-password" class="form-label">סיסמה נוכחית</label>
+                                <input type="password" class="form-control" id="current-password" placeholder="הכנס סיסמה נוכחית">
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-password" class="form-label">סיסמה חדשה</label>
+                                <input type="password" class="form-control" id="new-password" placeholder="הכנס סיסמה חדשה">
+                                <div class="form-text">הסיסמה חייבת להכיל לפחות 8 תווים, אות גדולה, אות קטנה ומספר</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm-password" class="form-label">אימות סיסמה חדשה</label>
+                                <input type="password" class="form-control" id="confirm-password" placeholder="הכנס שוב את הסיסמה החדשה">
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-lock-fill me-1"></i>עדכן סיסמה
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- בקשת הפיכה לבעל עסק -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="card-title mb-0">דרישת בעלות על עסק</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-3">אם ברשותך קוד בעלות על עסק, הזן אותו כאן כדי להפוך לבעל העסק:</p>
+                        <form id="claim-business-form" class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="business-code" placeholder="הזן קוד עסק (6 ספרות)" maxlength="6" pattern="[0-9]{6}">
+                                <div class="form-text">קוד העסק הוא מספר בן 6 ספרות שניתן לך על ידי מנהל העסק</div>
+                            </div>
+                            <div class="col-md-6 d-grid d-md-flex">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="bi bi-shop me-1"></i>דרוש בעלות על העסק
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- הגדרות התראות -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="card-title mb-0">הגדרות התראות</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="notifications-form">
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="email-notifications" checked>
+                                <label class="form-check-label" for="email-notifications">קבלת התראות למייל</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="sms-notifications" checked>
+                                <label class="form-check-label" for="sms-notifications">קבלת התראות ב-SMS</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="reminder-24h" checked>
+                                <label class="form-check-label" for="reminder-24h">תזכורת 24 שעות לפני התור</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="reminder-1h" checked>
+                                <label class="form-check-label" for="reminder-1h">תזכורת שעה לפני התור</label>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-bell-fill me-1"></i>שמור הגדרות התראות
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- מחיקת חשבון -->
+                <div class="card shadow-sm mb-4 border-danger">
+                    <div class="card-header bg-white text-danger py-3">
+                        <h5 class="card-title mb-0">מחיקת חשבון</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-3">מחיקת החשבון היא פעולה בלתי הפיכה. כל הנתונים שלך, כולל היסטוריית התורים, יימחקו לצמיתות.</p>
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                            <i class="bi bi-trash-fill me-1"></i>מחק את החשבון שלי
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל אישור מחיקת חשבון -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">אישור מחיקת חשבון</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <span>אזהרה: פעולה זו תמחק לצמיתות את החשבון שלך וכל הנתונים המשויכים אליו. לא ניתן לבטל פעולה זו.</span>
+                    </div>
+                    <p>כדי לאשר את מחיקת החשבון, אנא הקלד את הכתובת שלך באימייל:</p>
+                    <input type="email" class="form-control" id="confirm-email" placeholder="הכנס את כתובת האימייל שלך">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ביטול</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete-account">מחק חשבון</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- אלמנט הודעות -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+        <div id="message-toast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toast-message">
+                    <!-- תוכן ההודעה יוכנס כאן דינמית -->
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/customer-settings.js"></script>
+</body>
+</html> 

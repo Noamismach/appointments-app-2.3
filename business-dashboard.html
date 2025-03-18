@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דשבורד עסקי - מערכת תורים</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- נאב-בר -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-calendar-check-fill me-2"></i>תורים
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="business-dashboard.html">דשבורד</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="business-settings.html">הגדרות עסק</a>
+                    </li>
+                </ul>
+                <!-- אזור משתמש מחובר -->
+                <div class="d-flex user-info">
+                    <span class="navbar-text me-3">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <span id="username-display">שם משתמש</span>
+                    </span>
+                    <button class="btn btn-outline-light" id="logout-btn">התנתק</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- תוכן הדשבורד -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- סיידבר -->
+            <div class="col-lg-3 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">הפרופיל העסקי שלי</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="business-info mb-4" id="business-info">
+                            <div class="text-center mb-3">
+                                <div class="business-avatar mb-3">
+                                    <i class="bi bi-building display-1 text-primary"></i>
+                                </div>
+                                <h5 id="business-name">שם העסק</h5>
+                                <p class="text-muted small" id="business-type">סוג העסק</p>
+                            </div>
+                            <hr>
+                            <div class="business-details">
+                                <p><i class="bi bi-geo-alt-fill me-2 text-primary"></i><span id="business-address">כתובת העסק</span></p>
+                                <p><i class="bi bi-telephone-fill me-2 text-primary"></i><span id="business-phone">טלפון העסק</span></p>
+                                <p><i class="bi bi-hash me-2 text-primary"></i><span id="business-code">קוד עסק: ------</span></p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="business-settings.html" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-gear-fill me-1"></i>ערוך פרופיל
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- סטטיסטיקות מהירות -->
+                <div class="card border-0 shadow-sm mt-4">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">סטטיסטיקה</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3 text-center">
+                            <div class="col-6">
+                                <div class="p-3 bg-light rounded">
+                                    <h5 class="m-0 display-6 fw-bold text-primary" id="stats-today">0</h5>
+                                    <p class="small text-muted mb-0">תורים היום</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-light rounded">
+                                    <h5 class="m-0 display-6 fw-bold text-primary" id="stats-pending">0</h5>
+                                    <p class="small text-muted mb-0">ממתינים לאישור</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-light rounded">
+                                    <h5 class="m-0 display-6 fw-bold text-primary" id="stats-week">0</h5>
+                                    <p class="small text-muted mb-0">תורים השבוע</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-light rounded">
+                                    <h5 class="m-0 display-6 fw-bold text-primary" id="stats-month">0</h5>
+                                    <p class="small text-muted mb-0">תורים החודש</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- תוכן ראשי -->
+            <div class="col-lg-9">
+                <!-- כרטיסיות -->
+                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="calendar-tab" data-bs-toggle="tab" data-bs-target="#calendar-tab-pane" type="button" role="tab" aria-controls="calendar-tab-pane" aria-selected="true">
+                            <i class="bi bi-calendar-week me-1"></i>לוח שנה
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="appointments-tab" data-bs-toggle="tab" data-bs-target="#appointments-tab-pane" type="button" role="tab" aria-controls="appointments-tab-pane" aria-selected="false">
+                            <i class="bi bi-list-check me-1"></i>רשימת תורים
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- תוכן הכרטיסיות -->
+                <div class="tab-content" id="myTabContent">
+                    <!-- כרטיסיית לוח שנה -->
+                    <div class="tab-pane fade show active" id="calendar-tab-pane" role="tabpanel" aria-labelledby="calendar-tab" tabindex="0">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-0">
+                                <div id="calendar" class="fc-calendar-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- כרטיסיית רשימת תורים -->
+                    <div class="tab-pane fade" id="appointments-tab-pane" role="tabpanel" aria-labelledby="appointments-tab" tabindex="0">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-white py-3">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <h5 class="card-title mb-0">רשימת תורים</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="search-appointments" placeholder="חיפוש לפי שם או טלפון...">
+                                            <button class="btn btn-outline-primary" type="button" id="search-button">
+                                                <i class="bi bi-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!-- סינון -->
+                                <div class="mb-3">
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="appointment-filter" id="filter-all" value="all" checked>
+                                        <label class="btn btn-outline-primary" for="filter-all">הכל</label>
+                                        
+                                        <input type="radio" class="btn-check" name="appointment-filter" id="filter-pending" value="pending">
+                                        <label class="btn btn-outline-primary" for="filter-pending">ממתינים</label>
+                                        
+                                        <input type="radio" class="btn-check" name="appointment-filter" id="filter-confirmed" value="confirmed">
+                                        <label class="btn btn-outline-primary" for="filter-confirmed">מאושרים</label>
+                                        
+                                        <input type="radio" class="btn-check" name="appointment-filter" id="filter-completed" value="completed">
+                                        <label class="btn btn-outline-primary" for="filter-completed">הסתיימו</label>
+                                        
+                                        <input type="radio" class="btn-check" name="appointment-filter" id="filter-cancelled" value="cancelled">
+                                        <label class="btn btn-outline-primary" for="filter-cancelled">בוטלו</label>
+                                    </div>
+                                </div>
+                                
+                                <!-- טבלת התורים -->
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">תאריך</th>
+                                                <th scope="col">שעה</th>
+                                                <th scope="col">שם הלקוח</th>
+                                                <th scope="col">טלפון</th>
+                                                <th scope="col">שירות</th>
+                                                <th scope="col">סטטוס</th>
+                                                <th scope="col">פעולות</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="appointments-table">
+                                            <!-- נתוני התורים יוכנסו כאן דינמית -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- כפתורי עימוד -->
+                                <nav aria-label="Page navigation example" class="mt-4">
+                                    <ul class="pagination justify-content-center" id="appointments-pagination">
+                                        <!-- כפתורי העימוד יוכנסו כאן דינמית -->
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- מודל פרטי תור -->
+    <div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appointmentModalLabel">פרטי תור</h5>
+                    <button type="button" class="btn-close ms-0 me-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="appointment-details">
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">שם הלקוח:</div>
+                            <div class="col-sm-8" id="modal-customer-name"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">טלפון:</div>
+                            <div class="col-sm-8" id="modal-customer-phone"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">אימייל:</div>
+                            <div class="col-sm-8" id="modal-customer-email"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">שירות:</div>
+                            <div class="col-sm-8" id="modal-service"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">תאריך:</div>
+                            <div class="col-sm-8" id="modal-date"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">שעה:</div>
+                            <div class="col-sm-8" id="modal-time"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">הערות:</div>
+                            <div class="col-sm-8" id="modal-notes"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4 fw-bold">סטטוס:</div>
+                            <div class="col-sm-8">
+                                <span class="badge" id="modal-status"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="confirm-appointment">אשר תור</button>
+                    <button type="button" class="btn btn-danger" id="cancel-appointment">בטל תור</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">סגור</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- אלמנט הודעות -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+        <div id="message-toast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toast-message">
+                    <!-- תוכן ההודעה יוכנס כאן דינמית -->
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/locales/he.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/business-dashboard.js"></script>
+</body>
+</html> 
