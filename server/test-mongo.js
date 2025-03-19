@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://NoamIS:Noam2008@cluster0.6zzfe.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "your MongoDB URI";
 
 console.log("התחלת בדיקת חיבור ל-MongoDB");
 
